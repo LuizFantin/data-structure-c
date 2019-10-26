@@ -7,6 +7,7 @@ Implementations of data structures and sorting algorithms in C language.
   - bubbleSort
   - mergeSort
   - quickSort
+  - insertionSort
   - external quickSort
   
  
