@@ -1,50 +1,89 @@
-#include "quickSortExt.c"
+/*Erika Barbosa Gomes
+  Everson Henrich da Silva
+  Luiz Fantin Neto
+  Milena Tavares Roas */
+
+#include "quickSortExt.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 
+typedef struct {
+    int matricula;
+    char nome[20];
+}Aluno;
 
 
+int comparaMat(void *a, void *b)
+{
+    Aluno* elemento1 = (Aluno*)a;
+    Aluno* elemento2 = (Aluno*)b;
+    
+    if(elemento1->matricula == elemento2->matricula)
+        return 0;
+    else if(elemento1->matricula > elemento2->matricula)
+        return 1;
+    else
+        return -1;
+}
 
-void gerarArquivoInt(FILE *arq, int nElem)
+int comparaNome(void *a, void *b)
+{
+    Aluno* elemento1 = (Aluno*)a;
+    Aluno* elemento2 = (Aluno*)b;
+
+    return strcmp(elemento1->nome,elemento2->nome);
+}
+
+
+int gerarArquivoInt(FILE *arq, int nElem)
 {
     int i = 0;
-    int *value = (int*)calloc(nElem, sizeof(int));
+    char c;
+    Aluno *value = (Aluno*)calloc(nElem, sizeof(Aluno));
 
     srand(time(NULL));
     rewind(arq);
 
     for(i = 0; i < nElem; i++)
     {
-        // value[i] = nElem - i;
-        value[i] = rand()%100;
+        value[i].matricula = rand()%1000;
     }
-    fwrite(value, sizeof(int), nElem, arq);
+    return fwrite(value, sizeof(Aluno), nElem, arq);
 }
+
+
 
 int main()
 {
-    FILE *arq = fopen("test1.bin", "rb+");
-    int value = 0;
+    FILE *arq = fopen("test1.bin", "wb+");
+    Aluno value;
     int li = 0;
     int i = 0;
     int j = 0;
     short int o = 0;
 
-    gerarArquivoInt(arq, 5000);
-    while(li < 5000)
+    printf("%d valores gerados.\n", gerarArquivoInt(arq, 50));
+    printf("Arquivo antes do quickSortExterno\n");
+
+    while(li < 50)
     {
-        lerInf(arq, &value, &li, sizeof(int), &o);
-        printf("%d - \t%d\n", li, value);
+        lerInf(arq, (void*)(&value), &li, sizeof(Aluno), &o);
+        printf("%d - \t%d\n", li, value.matricula);
     }
-    quickSortExterno(arq, 0, 4999, 80);
+
+    quickSortExterno(arq, 0, 49, 15, sizeof(Aluno), comparaMat);
+
     li = 0;
-    while(li < 5000)
+    printf("==========================\n");
+    printf("Arquivo apos quickSortExterno\n");
+
+    while(li < 50)
     {
-        lerInf(arq, &value, &li, sizeof(int), &o);
-        printf("%d - \t%d\n", li, value);
+        lerInf(arq, (void*)(&value), &li, sizeof(Aluno), &o);
+        printf("%d - \t%d\n", li, value.matricula);
     }
-    printf("i = %d, j = %d\n", i, j);
+    
     return 0;
 }
