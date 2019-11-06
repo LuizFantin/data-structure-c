@@ -1,7 +1,3 @@
-/*Erika Barbosa Gomes
-  Everson Henrich da Silva
-  Luiz Fantin Neto
-  Milena Tavares Roas */
 
 #include "quickSortExt.h"
 

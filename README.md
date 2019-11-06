@@ -15,5 +15,7 @@ Implementations of data structures and sorting algorithms in C language.
   - Queue
   - Stack
   - Linked List
+  - Doubly Linked List
   - Binary Search Tree
   - AVL Tree
+  - Red-Black Tree

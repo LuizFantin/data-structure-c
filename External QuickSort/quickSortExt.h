@@ -1,7 +1,4 @@
-//Erika Barbosa Gomes
-//Everson Henrich da Silva
-//Luiz Fantin Neto
-//Milena Tavares Roas
+
 
 #ifndef _H_QUICKSORTEXT
 #define _H_QUICKSORTEXT
