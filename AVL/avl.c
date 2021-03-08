@@ -7,7 +7,7 @@
 
 
 /* funcao: AVL *createAVL()
-   *  acao:        funcao que cria uma AVL
+   *  acão:        funcao que cria uma AVL
    *  entrada:     void
    *  saida:       ponteiro para uma AVL
    *  suposicoes:  nenhuma
